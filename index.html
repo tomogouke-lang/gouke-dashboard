@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDS Dashboard</title>
+<style>
+/* リセットと基本設定 */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a { color: #4fc3f7; text-decoration: none; }
+
+/* ヘッダー */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: #0f3460;
+  border-bottom: 2px solid #1a1a4e;
+}
+
+.header h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.header .updated {
+  font-size: 0.8rem;
+  color: #999;
+}
+
+/* エラー・ローディング */
+.loading, .error {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.1rem;
+}
+
+.error { color: #ef5350; }
+
+/* サマリーバー */
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+}
+
+.summary-card {
+  background: #16213e;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s;
+  border-bottom: 3px solid transparent;
+  user-select: none;
+}
+
+.summary-card:hover {
+  transform: translateY(-2px);
+}
+
+.summary-card.active {
+  border-bottom: 3px solid #4fc3f7;
+}
+
+.summary-card .num {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.summary-card .label {
+  font-size: 0.75rem;
+  color: #999;
+}
+
+.summary-card.warn {
+  border-left: 3px solid #ef5350;
+}
+
+/* アーカイブボタン */
+.archive-toggle {
+  display: flex;
+  justify-content: center;
+  padding: 0 1.5rem 0.5rem;
+}
+
+.archive-btn {
+  background: #16213e;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #999;
+  padding: 0.4rem 1.2rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.archive-btn:hover {
+  background: #0f3460;
+  color: #e0e0e0;
+}
+
+.archive-btn.open {
+  background: #0f3460;
+  color: #e0e0e0;
+  border-color: #4fc3f7;
+}
+
+/* 警告バナー */
+.deadline-warnings {
+  padding: 0 1.5rem 0.5rem;
+}
+
+.warn-item {
+  background: rgba(239, 83, 80, 0.15);
+  border-left: 3px solid #ef5350;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.35rem;
+  border-radius: 0 4px 4px 0;
+  font-size: 0.85rem;
+}
+
+/* セクションタイトル */
+.section-title {
+  padding: 1rem 1.5rem 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  border-bottom: 1px solid #333;
+  margin: 0 1.5rem;
+}
+
+/* カード一覧 */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+}
+
+.card {
+  background: #16213e;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  transition: transform 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card:hover { transform: translateY(-2px); }
+
+/* アーカイブカード */
+.card.archived {
+  opacity: 0.7;
+}
+
+.card .card-name.cancelled {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.card .archived-reason {
+  font-size: 0.75rem;
+  color: #ef5350;
+  font-style: italic;
+}
+
+/* カードヘッダー */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.card-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.card-badges {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+/* バッジ */
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ステータスカテゴリバッジ */
+.badge-sc-planning   { background: #ab47bc; color: #fff; }
+.badge-sc-active     { background: #4fc3f7; color: #1a1a2e; }
+.badge-sc-testing    { background: #ff9800; color: #1a1a2e; }
+.badge-sc-done       { background: #66bb6a; color: #1a1a2e; }
+.badge-sc-hold       { background: #999;    color: #1a1a2e; }
+.badge-sc-cancelled  { background: #ef5350; color: #fff; }
+
+/* 優先度バッジ（小さめ） */
+.badge-priority {
+  font-size: 0.6rem;
+  padding: 0.1rem 0.35rem;
+  opacity: 0.8;
+}
+
+.badge-critical { background: #ef5350; color: #fff; }
+.badge-high { background: #ff9800; color: #1a1a2e; }
+.badge-medium { background: #42a5f5; color: #1a1a2e; }
+.badge-none { background: #666; color: #e0e0e0; }
+.badge-bug { background: #ef5350; color: #fff; }
+
+/* ステータス行 */
+.card-status {
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+/* 進捗バー */
+.progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: #aaa;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 6px;
+  background: #333;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #0f3460, #4fc3f7);
+  transition: width 0.3s;
+}
+
+.progress-fill.complete {
+  background: linear-gradient(90deg, #2e7d32, #66bb6a);
+}
+
+/* 期日 */
+.deadline {
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+.deadline.soon {
+  color: #ef5350;
+  font-weight: 600;
+}
+
+.deadline.past {
+  color: #ef5350;
+  font-weight: 700;
+}
+
+/* タグ */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.tag {
+  font-size: 0.65rem;
+  padding: 0.1rem 0.4rem;
+  background: #0f3460;
+  border-radius: 3px;
+  color: #8bb4e0;
+}
+
+/* TODOリスト（折りたたみ） */
+.card details {
+  font-size: 0.8rem;
+}
+
+.card summary {
+  cursor: pointer;
+  color: #4fc3f7;
+  font-size: 0.8rem;
+  padding: 0.2rem 0;
+  user-select: none;
+}
+
+.card details ul {
+  list-style: none;
+  padding: 0.25rem 0 0 0.5rem;
+}
+
+.card details li {
+  padding: 0.15rem 0;
+  color: #bbb;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.card details li::before {
+  content: "\25CB";
+  position: absolute;
+  left: 0;
+  color: #666;
+}
+
+/* バグ一覧セクション */
+.bug-list {
+  padding: 0.75rem 1.5rem 1.5rem;
+}
+
+.bug-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.bug-table th {
+  text-align: left;
+  padding: 0.5rem;
+  border-bottom: 2px solid #333;
+  color: #999;
+  font-weight: 600;
+}
+
+.bug-table td {
+  padding: 0.5rem;
+  border-bottom: 1px solid #222;
+}
+
+.bug-table tr:hover td {
+  background: rgba(79, 195, 247, 0.05);
+}
+
+.bug-project {
+  color: #4fc3f7;
+  white-space: nowrap;
+}
+
+/* タイムライン */
+.timeline {
+  padding: 0.75rem 1.5rem 2rem;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-left: 2px solid #333;
+  margin-left: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #4fc3f7;
+}
+
+.timeline-item.soon::before { background: #ef5350; }
+.timeline-item.past::before { background: #666; }
+
+.timeline-date {
+  font-size: 0.85rem;
+  font-weight: 600;
+  min-width: 100px;
+  color: #aaa;
+}
+
+.timeline-date.soon { color: #ef5350; }
+
+.timeline-name {
+  font-size: 0.9rem;
+}
+
+.timeline-label {
+  font-size: 0.75rem;
+  color: #777;
+}
+
+/* 空メッセージ */
+.empty {
+  color: #666;
+  font-size: 0.85rem;
+  padding: 0.5rem 0;
+}
+
+/* アーカイブセクション */
+.archive-section {
+  display: none;
+}
+
+.archive-section.open {
+  display: block;
+}
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+  .header { flex-direction: column; gap: 0.3rem; text-align: center; }
+  .cards { grid-template-columns: 1fr; }
+  .summary { grid-template-columns: repeat(2, 1fr); }
+  .section-title { margin: 0 1rem; }
+  .bug-table { font-size: 0.75rem; }
+  .bug-table th, .bug-table td { padding: 0.4rem 0.3rem; }
+  .timeline-item { gap: 0.5rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <h1>PDS Dashboard</h1>
+  <span class="updated" id="lastUpdated"></span>
+</header>
+
+<!-- メインコンテンツ -->
+<main id="app">
+  <div class="loading">読み込み中...</div>
+</main>
+
+<script>
+// ===== 定数 =====
+
+// ステータスカテゴリの定義
+const STATUS_CATEGORIES = {
+  '計画中':   { cls: 'badge-sc-planning',  color: '#ab47bc', order: 0 },
+  '進行中':   { cls: 'badge-sc-active',    color: '#4fc3f7', order: 1 },
+  'テスト待ち': { cls: 'badge-sc-testing',  color: '#ff9800', order: 2 },
+  '完了':     { cls: 'badge-sc-done',      color: '#66bb6a', order: 3 },
+  '保留':     { cls: 'badge-sc-hold',      color: '#999',    order: 4 },
+  '中止':     { cls: 'badge-sc-cancelled', color: '#ef5350', order: 5 },
+};
+
+// アーカイブ対象のカテゴリ
+const ARCHIVE_CATEGORIES = ['完了', '保留', '中止'];
+
+// アクティブ（メイン表示）対象のカテゴリ
+const ACTIVE_CATEGORIES = ['計画中', '進行中', 'テスト待ち'];
+
+// 優先度マッピング
+const PRIORITY_MAP = {
+  '最優先': { cls: 'badge-critical', order: 0 },
+  '高':     { cls: 'badge-high',     order: 1 },
+  '中':     { cls: 'badge-medium',   order: 2 },
+  '未定':   { cls: 'badge-none',     order: 3 },
+};
+
+// 期日が何日以内なら「近い」とみなすか
+const DEADLINE_SOON_DAYS = 14;
+
+// ===== ユーティリティ =====
+
+/** HTMLエスケープ */
+function esc(str) {
+  if (!str) return '';
+  const d = document.createElement('div');
+  d.textContent = String(str);
+  return d.innerHTML;
+}
+
+/** 日付文字列から残り日数を返す（過去ならマイナス） */
+function daysUntil(dateStr) {
+  if (!dateStr) return null;
+  const target = new Date(dateStr + 'T00:00:00');
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+  return Math.ceil((target - now) / (1000 * 60 * 60 * 24));
+}
+
+/** 日付をフォーマット */
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr);
+  return `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}`;
+}
+
+/** 最終更新をフォーマット */
+function formatUpdated(isoStr) {
+  if (!isoStr) return '';
+  const d = new Date(isoStr);
+  const pad = (n) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}/${pad(d.getMonth() + 1)}/${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
+/** プロジェクトのstatusCategory（フォールバック付き） */
+function getCategory(project) {
+  if (project.statusCategory && STATUS_CATEGORIES[project.statusCategory]) {
+    return project.statusCategory;
+  }
+  // フォールバック: statusフィールドから推測
+  const s = project.status || '';
+  if (s.includes('計画')) return '計画中';
+  if (s.includes('開発初期')) return '計画中';
+  if (s.includes('運用') || s.includes('稼働') || s.includes('進行')) return '進行中';
+  if (s.includes('テスト')) return 'テスト待ち';
+  if (s.includes('完了') || s.includes('完成')) return '完了';
+  if (s.includes('保留')) return '保留';
+  if (s.includes('中止')) return '中止';
+  return '進行中';
+}
+
+/** アーカイブ対象か判定 */
+function isArchived(project) {
+  const cat = getCategory(project);
+  return ARCHIVE_CATEGORIES.includes(cat);
+}
+
+// ===== 状態管理 =====
+let currentFilter = 'all'; // 'all', '計画中', '進行中', 'テスト待ち', 'bugs'
+let showArchive = false;
+let projectData = [];
+
+// ===== レンダリング関数 =====
+
+/** サマリーバーを生成 */
+function renderSummary(projects) {
+  // アクティブなプロジェクト（アーカイブ除外）のカウント
+  const activeProjects = projects.filter(p => !isArchived(p));
+  const planCount = activeProjects.filter(p => getCategory(p) === '計画中').length;
+  const progressCount = activeProjects.filter(p => getCategory(p) === '進行中').length;
+  const testCount = activeProjects.filter(p => getCategory(p) === 'テスト待ち').length;
+  const bugCount = projects.reduce((sum, p) => sum + (p.bugs ? p.bugs.length : 0), 0);
+  const archiveCount = projects.filter(p => isArchived(p)).length;
+  const totalActive = activeProjects.length;
+
+  // サマリーカードのデータ
+  const cards = [
+    { key: 'all',       num: totalActive,   label: '全プロジェクト', color: '#fff' },
+    { key: '計画中',    num: planCount,      label: '計画中',       color: '#ab47bc' },
+    { key: '進行中',    num: progressCount,  label: '進行中',       color: '#4fc3f7' },
+    { key: 'テスト待ち', num: testCount,     label: 'テスト待ち',    color: '#ff9800' },
+    { key: 'bugs',      num: bugCount,       label: '不具合',       color: bugCount > 0 ? '#ef5350' : '#666', warn: bugCount > 0 },
+  ];
+
+  const cardsHtml = cards.map(c => {
+    const activeClass = currentFilter === c.key ? 'active' : '';
+    const warnClass = c.warn ? 'warn' : '';
+    return `
+      <div class="summary-card ${activeClass} ${warnClass}" data-filter="${esc(c.key)}">
+        <div class="num" style="color:${c.color}">${c.num}</div>
+        <div class="label">${esc(c.label)}</div>
+      </div>`;
+  }).join('');
+
+  // アーカイブボタン
+  const archiveBtn = archiveCount > 0
+    ? `<div class="archive-toggle">
+        <button class="archive-btn ${showArchive ? 'open' : ''}" id="archiveBtn">
+          ${showArchive ? '&#9650;' : '&#9660;'} アーカイブ（${archiveCount}件）
+        </button>
+      </div>`
+    : '';
+
+  return `<div class="summary" id="summaryBar">${cardsHtml}</div>${archiveBtn}`;
+}
+
+/** 期日警告バナー */
+function renderDeadlineWarnings(projects) {
+  const warnings = projects
+    .filter(p => p.deadline)
+    .map(p => ({ name: p.name, days: daysUntil(p.deadline), deadline: p.deadline, label: p.deadlineLabel }))
+    .filter(w => w.days !== null && w.days <= DEADLINE_SOON_DAYS)
+    .sort((a, b) => a.days - b.days);
+
+  if (warnings.length === 0) return '';
+
+  const items = warnings.map(w => {
+    const msg = w.days < 0
+      ? `${w.name} - 期日超過（${Math.abs(w.days)}日前）`
+      : w.days === 0
+      ? `${w.name} - 本日が期日`
+      : `${w.name} - あと${w.days}日（${formatDate(w.deadline)}）`;
+    return `<div class="warn-item">${esc(msg)}</div>`;
+  }).join('');
+
+  return `<div class="deadline-warnings">${items}</div>`;
+}
+
+/** ステータスカテゴリバッジHTML */
+function statusCategoryBadge(category) {
+  const info = STATUS_CATEGORIES[category] || STATUS_CATEGORIES['進行中'];
+  return `<span class="badge ${info.cls}">${esc(category)}</span>`;
+}
+
+/** 優先度バッジHTML（小さめ） */
+function priorityBadge(priority) {
+  const info = PRIORITY_MAP[priority] || PRIORITY_MAP['未定'];
+  return `<span class="badge badge-priority ${info.cls}">${esc(priority)}</span>`;
+}
+
+/** カード1枚を生成 */
+function renderCard(project) {
+  const p = project;
+  const ph = p.phase || {};
+  const pct = ph.total > 0 ? Math.round((ph.current / ph.total) * 100) : 0;
+  const isComplete = ph.current === ph.total && ph.total > 0;
+  const days = daysUntil(p.deadline);
+  const bugCount = p.bugs ? p.bugs.length : 0;
+  const cat = getCategory(p);
+  const archived = isArchived(p);
+  const isCancelled = cat === '中止';
+
+  // 期日表示
+  let deadlineHtml = '';
+  if (p.deadline) {
+    let cls = '';
+    let text = formatDate(p.deadline);
+    if (p.deadlineLabel) text += `（${esc(p.deadlineLabel)}）`;
+    if (days !== null && days < 0) {
+      cls = 'past';
+      text += ` - ${Math.abs(days)}日超過`;
+    } else if (days !== null && days <= DEADLINE_SOON_DAYS) {
+      cls = 'soon';
+      text += ` - あと${days}日`;
+    }
+    deadlineHtml = `<div class="deadline ${cls}">${text}</div>`;
+  }
+
+  // バグバッジ
+  const bugBadge = bugCount > 0
+    ? `<span class="badge badge-bug">${bugCount}件</span>`
+    : '';
+
+  // 中止理由
+  let reasonHtml = '';
+  if (isCancelled && p.archivedReason) {
+    reasonHtml = `<div class="archived-reason">${esc(p.archivedReason)}</div>`;
+  }
+
+  // TODO折りたたみ
+  let todoHtml = '';
+  if (p.todos && p.todos.length > 0) {
+    const items = p.todos.map(t => `<li>${esc(t)}</li>`).join('');
+    todoHtml = `
+      <details>
+        <summary>TODO（${p.todos.length}件）</summary>
+        <ul>${items}</ul>
+      </details>`;
+  }
+
+  // タグ
+  const tagsHtml = (p.tags && p.tags.length > 0)
+    ? `<div class="tags">${p.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>`
+    : '';
+
+  return `
+    <div class="card ${archived ? 'archived' : ''}" data-category="${esc(cat)}">
+      <div class="card-header">
+        <span class="card-name ${isCancelled ? 'cancelled' : ''}">${esc(p.name)}</span>
+        <span class="card-badges">
+          ${statusCategoryBadge(cat)}
+          ${priorityBadge(p.priority)}
+          ${bugBadge}
+        </span>
+      </div>
+      <div class="card-status">${esc(p.status)}</div>
+      ${reasonHtml}
+      <div class="progress-wrap">
+        <div class="progress-bar">
+          <div class="progress-fill ${isComplete ? 'complete' : ''}" style="width:${pct}%"></div>
+        </div>
+        <span>${ph.current || 0}/${ph.total || 0}${ph.label ? ' ' + esc(ph.label) : ''}</span>
+      </div>
+      ${deadlineHtml}
+      ${tagsHtml}
+      ${todoHtml}
+    </div>`;
+}
+
+/** 不具合一覧セクション */
+function renderBugSection(projects) {
+  const allBugs = [];
+  for (const p of projects) {
+    if (p.bugs && p.bugs.length > 0) {
+      for (const bug of p.bugs) {
+        allBugs.push({ project: p.name, priority: p.priority, text: bug });
+      }
+    }
+  }
+
+  if (allBugs.length === 0) {
+    return '<div class="bug-list"><p class="empty">不具合はありません</p></div>';
+  }
+
+  const rows = allBugs.map(b => `
+    <tr>
+      <td class="bug-project">${esc(b.project)}</td>
+      <td>${esc(b.text)}</td>
+      <td>${priorityBadge(b.priority)}</td>
+    </tr>`).join('');
+
+  return `
+    <div class="bug-list">
+      <table class="bug-table">
+        <thead><tr><th>プロジェクト</th><th>内容</th><th>優先度</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+}
+
+/** タイムラインセクション */
+function renderTimeline(projects) {
+  const items = projects
+    .filter(p => p.deadline)
+    .map(p => ({
+      name: p.name,
+      deadline: p.deadline,
+      label: p.deadlineLabel || '',
+      days: daysUntil(p.deadline),
+    }))
+    .sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
+
+  if (items.length === 0) {
+    return '<div class="timeline"><p class="empty">期日が設定されたプロジェクトはありません</p></div>';
+  }
+
+  const html = items.map(item => {
+    let cls = '';
+    if (item.days !== null && item.days < 0) cls = 'past';
+    else if (item.days !== null && item.days <= DEADLINE_SOON_DAYS) cls = 'soon';
+
+    const daysText = item.days !== null
+      ? (item.days < 0 ? `${Math.abs(item.days)}日超過` : item.days === 0 ? '本日' : `あと${item.days}日`)
+      : '';
+
+    return `
+      <div class="timeline-item ${cls}">
+        <span class="timeline-date ${cls}">${formatDate(item.deadline)}</span>
+        <span class="timeline-name">${esc(item.name)}</span>
+        <span class="timeline-label">${esc(item.label)} ${esc(daysText)}</span>
+      </div>`;
+  }).join('');
+
+  return `<div class="timeline">${html}</div>`;
+}
+
+// ===== フィルター適用 =====
+
+/** フィルターでプロジェクトを絞り込む（アクティブのみ） */
+function getFilteredActiveProjects(projects) {
+  // アーカイブ対象外のプロジェクトのみ
+  const active = projects.filter(p => !isArchived(p));
+
+  if (currentFilter === 'all') return [...active];
+  if (currentFilter === 'bugs') {
+    return active.filter(p => p.bugs && p.bugs.length > 0);
+  }
+  return active.filter(p => getCategory(p) === currentFilter);
+}
+
+// ===== メイン描画 =====
+function renderAll(projects) {
+  const filtered = getFilteredActiveProjects(projects);
+  const archivedProjects = projects.filter(p => isArchived(p));
+
+  // ソート: ステータスカテゴリ順 → 優先度順
+  const sorted = [...filtered].sort((a, b) => {
+    const catA = (STATUS_CATEGORIES[getCategory(a)] || { order: 99 }).order;
+    const catB = (STATUS_CATEGORIES[getCategory(b)] || { order: 99 }).order;
+    if (catA !== catB) return catA - catB;
+    const oa = (PRIORITY_MAP[a.priority] || PRIORITY_MAP['未定']).order;
+    const ob = (PRIORITY_MAP[b.priority] || PRIORITY_MAP['未定']).order;
+    return oa - ob;
+  });
+
+  // アーカイブもソート
+  const sortedArchive = [...archivedProjects].sort((a, b) => {
+    const catA = (STATUS_CATEGORIES[getCategory(a)] || { order: 99 }).order;
+    const catB = (STATUS_CATEGORIES[getCategory(b)] || { order: 99 }).order;
+    return catA - catB;
+  });
+
+  // アーカイブセクション
+  const archiveHtml = sortedArchive.length > 0
+    ? `<div class="archive-section ${showArchive ? 'open' : ''}" id="archiveSection">
+        <div class="section-title">アーカイブ（${sortedArchive.length}件）</div>
+        <div class="cards">${sortedArchive.map(renderCard).join('')}</div>
+      </div>`
+    : '';
+
+  const app = document.getElementById('app');
+  app.innerHTML = `
+    ${renderSummary(projects)}
+    ${renderDeadlineWarnings(projects)}
+    <div class="section-title">プロジェクト一覧（${sorted.length}件）</div>
+    <div class="cards">${sorted.map(renderCard).join('')}</div>
+    ${archiveHtml}
+    <div class="section-title">不具合一覧</div>
+    ${renderBugSection(filtered)}
+    <div class="section-title">期日カレンダー</div>
+    ${renderTimeline(projects)}
+  `;
+
+  // イベントリスナー設定
+  setupEventListeners();
+}
+
+/** サマリーバーとアーカイブボタンのイベントリスナー */
+function setupEventListeners() {
+  // サマリーバーのクリック
+  const summaryBar = document.getElementById('summaryBar');
+  if (summaryBar) {
+    summaryBar.addEventListener('click', (e) => {
+      const card = e.target.closest('.summary-card');
+      if (!card) return;
+      const filter = card.dataset.filter;
+      if (!filter) return;
+      currentFilter = filter;
+      renderAll(projectData);
+    });
+  }
+
+  // アーカイブボタンのクリック
+  const archiveBtn = document.getElementById('archiveBtn');
+  if (archiveBtn) {
+    archiveBtn.addEventListener('click', () => {
+      showArchive = !showArchive;
+      renderAll(projectData);
+    });
+  }
+}
+
+// ===== データ読み込み =====
+async function init() {
+  try {
+    const res = await fetch('dashboard.json');
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+    }
+    const data = await res.json();
+
+    // 最終更新日時を表示
+    const updatedEl = document.getElementById('lastUpdated');
+    if (data.lastUpdated) {
+      updatedEl.textContent = `最終更新: ${formatUpdated(data.lastUpdated)}`;
+    }
+
+    projectData = data.projects || [];
+    renderAll(projectData);
+  } catch (err) {
+    // 【何が起きたか】データの読み込みに失敗
+    // 【なぜ】fetch失敗またはJSONパースエラー
+    // 【どう直すか】dashboard.jsonが同じディレクトリにあるか確認
+    const app = document.getElementById('app');
+    app.innerHTML = `
+      <div class="error">
+        <p>データの読み込みに失敗しました</p>
+        <p style="font-size:0.85rem;color:#999;margin-top:0.5rem">
+          dashboard.json が同じディレクトリに存在するか確認してください。<br>
+          エラー: ${esc(err.message)}
+        </p>
+      </div>`;
+  }
+}
+
+// 起動
+init();
+</script>
+</body>
+</html>

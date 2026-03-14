@@ -1,0 +1,207 @@
+{
+  "lastUpdated": "2026-03-14T00:00:00+09:00",
+  "projects": [
+    {
+      "id": "kinmu-system",
+      "name": "勤務記録・運営管理システム",
+      "priority": "最優先",
+      "status": "テスト待ち",
+      "phase": { "current": 2, "total": 4, "label": "フェーズ2完了" },
+      "deadline": "2026-04-01",
+      "deadlineLabel": "4月実装",
+      "bugs": ["月次集計テストが未実施"],
+      "todos": [
+        "月次集計を実行 → 4シート確認",
+        "フェーズ3実装（日計フォーム処理）",
+        "涌波店で1ヶ月分テスト"
+      ],
+      "statusCategory": "テスト待ち",
+      "archivedReason": null,
+      "tags": ["GAS", "最優先"]
+    },
+    {
+      "id": "video-training",
+      "name": "動画研修管理システム",
+      "priority": "高",
+      "status": "稼働中（改善中）",
+      "phase": { "current": 3, "total": 4, "label": "フェーズ2.7" },
+      "deadline": null,
+      "deadlineLabel": null,
+      "bugs": ["フォーム事業所別分岐検証中"],
+      "todos": [
+        "updateFormFromMaster再実行",
+        "テスト回答送信",
+        "debugFormData削除",
+        "3月配信テスト"
+      ],
+      "statusCategory": "進行中",
+      "archivedReason": null,
+      "tags": ["GAS"]
+    },
+    {
+      "id": "otameshi-cancel",
+      "name": "お試し中止報告システム",
+      "priority": "高",
+      "status": "Phase2ほぼ完了",
+      "phase": { "current": 2, "total": 3, "label": "Phase2ほぼ完了" },
+      "deadline": null,
+      "deadlineLabel": null,
+      "bugs": [],
+      "todos": [
+        "テストデータ削除",
+        "本番テスト送信",
+        "施設責任者にURL通知",
+        "setup_facility_checkbox.gs削除"
+      ],
+      "statusCategory": "テスト待ち",
+      "archivedReason": null,
+      "tags": ["GAS"]
+    },
+    {
+      "id": "purake-hikitsugi",
+      "name": "プラ家引継ぎシステム",
+      "priority": "高",
+      "status": "本番運用中",
+      "phase": { "current": 3, "total": 3, "label": "Ver2.7本番運用中" },
+      "deadline": "2026-03-01",
+      "deadlineLabel": "3/1本番開始済",
+      "bugs": [
+        "Stagingチェックボックス大きさ確認",
+        "linesToArray()修正確認"
+      ],
+      "todos": [
+        "テスト結果確認",
+        "新3種報告書テスト",
+        "月次報告書コピペ確認"
+      ],
+      "statusCategory": "進行中",
+      "archivedReason": null,
+      "tags": ["GAS"]
+    },
+    {
+      "id": "togo-master",
+      "name": "統合マスター",
+      "priority": "高",
+      "status": "フェーズ2完了",
+      "phase": { "current": 2, "total": 3, "label": "フェーズ2完了" },
+      "deadline": null,
+      "deadlineLabel": null,
+      "bugs": [],
+      "todos": [
+        "vehicle_migration.gs削除",
+        "従業員資格データ入力",
+        "事業所データ入力"
+      ],
+      "statusCategory": "完了",
+      "archivedReason": null,
+      "tags": ["GAS", "全システム基盤"]
+    },
+    {
+      "id": "n8n-obsidian-inbox",
+      "name": "n8nワークフロー + Obsidian INBOX",
+      "priority": "高",
+      "status": "フェーズ2.7",
+      "phase": { "current": 3, "total": 4, "label": "フェーズ2.7" },
+      "deadline": null,
+      "deadlineLabel": null,
+      "bugs": [],
+      "todos": [
+        "Anthropic APIキー設定",
+        "課金上限設定",
+        "LINE INBOXチャネル作成",
+        "Haiku分離",
+        "写真OCR"
+      ],
+      "statusCategory": "進行中",
+      "archivedReason": null,
+      "tags": ["n8n", "Obsidian", "API"]
+    },
+    {
+      "id": "career-enquete",
+      "name": "キャリアアンケートシステム",
+      "priority": "中",
+      "status": "計画段階",
+      "phase": { "current": 1, "total": 4, "label": "シート定義済" },
+      "deadline": null,
+      "deadlineLabel": null,
+      "bugs": [],
+      "todos": [
+        "スプシID確認",
+        "ストレスチェック設計",
+        "面談判定基準決定",
+        "GAS実装"
+      ],
+      "statusCategory": "計画中",
+      "archivedReason": null,
+      "tags": ["GAS"]
+    },
+    {
+      "id": "spreadsheet-exporter",
+      "name": "スプレッドシート構造エクスポーター",
+      "priority": "中",
+      "status": "運用中",
+      "phase": { "current": 3, "total": 3, "label": "v2.2完成" },
+      "deadline": null,
+      "deadlineLabel": null,
+      "bugs": [],
+      "todos": [
+        "残り2つのスプシエクスポート"
+      ],
+      "statusCategory": "完了",
+      "archivedReason": null,
+      "tags": ["GAS"]
+    },
+    {
+      "id": "kunren-record",
+      "name": "訓練実施記録システム",
+      "priority": "未定",
+      "status": "開発初期段階",
+      "phase": { "current": 1, "total": 4, "label": "開発初期段階" },
+      "deadline": null,
+      "deadlineLabel": null,
+      "bugs": [],
+      "todos": [
+        "システム要件詳細化"
+      ],
+      "statusCategory": "計画中",
+      "archivedReason": null,
+      "tags": ["GAS"]
+    },
+    {
+      "id": "facility-hp",
+      "name": "施設空き状況・HPシステム",
+      "priority": "中",
+      "status": "HTML完成→再設計",
+      "phase": { "current": 1, "total": 4, "label": "HTML完成→再設計" },
+      "deadline": null,
+      "deadlineLabel": null,
+      "bugs": [],
+      "todos": [
+        "Gドライブ確認",
+        "データソース確認",
+        "方向性決定",
+        "デザイン → 実装"
+      ],
+      "statusCategory": "計画中",
+      "archivedReason": null,
+      "tags": ["HTML", "CSS", "JavaScript"]
+    },
+    {
+      "id": "gas-test-base",
+      "name": "GASテスト基盤",
+      "priority": "高",
+      "status": "フェーズ3完了",
+      "phase": { "current": 3, "total": 3, "label": "フェーズ3完了" },
+      "deadline": null,
+      "deadlineLabel": null,
+      "bugs": [],
+      "todos": [
+        "clasp run全プロジェクト確認",
+        "テストケース追加"
+      ],
+      "statusCategory": "完了",
+      "archivedReason": null,
+      "tags": ["GAS", "テスト"]
+    }
+  ]
+}
