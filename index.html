@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PDS Dashboard</title>
+<title>GOUKE Dashboard</title>
 <style>
 /* リセットと基本設定 */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -37,6 +37,37 @@ a { color: #4fc3f7; text-decoration: none; }
 .header .updated {
   font-size: 0.8rem;
   color: #999;
+}
+
+/* タブバー */
+.tab-bar {
+  display: flex;
+  background: #0f3460;
+  border-bottom: 2px solid #1a1a4e;
+  padding: 0 1.5rem;
+  gap: 0;
+}
+
+.tab-btn {
+  padding: 0.6rem 1.5rem;
+  background: transparent;
+  border: none;
+  color: #999;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+  user-select: none;
+}
+
+.tab-btn:hover {
+  color: #e0e0e0;
+}
+
+.tab-btn.active {
+  color: #fff;
+  border-bottom: 3px solid #4fc3f7;
 }
 
 /* エラー・ローディング */
@@ -435,15 +466,23 @@ a { color: #4fc3f7; text-decoration: none; }
   .bug-table { font-size: 0.75rem; }
   .bug-table th, .bug-table td { padding: 0.4rem 0.3rem; }
   .timeline-item { gap: 0.5rem; }
+  .tab-bar { padding: 0 1rem; }
+  .tab-btn { padding: 0.5rem 1rem; font-size: 0.8rem; }
 }
 </style>
 </head>
 <body>
 
 <header class="header">
-  <h1>PDS Dashboard</h1>
+  <h1>GOUKE Dashboard</h1>
   <span class="updated" id="lastUpdated"></span>
 </header>
+
+<!-- タブ -->
+<div class="tab-bar" id="tabBar">
+  <button class="tab-btn active" data-tab="pds">PDS（会社）</button>
+  <button class="tab-btn" data-tab="personal">個人</button>
+</div>
 
 <!-- メインコンテンツ -->
 <main id="app">
@@ -852,16 +891,41 @@ function setupEventListeners() {
   }
 }
 
-// ===== データ読み込み =====
-async function init() {
+// ===== タブ管理 =====
+let currentTab = 'pds';
+
+const TAB_CONFIG = {
+  pds: { file: 'pds.json', title: 'PDS（会社）' },
+  personal: { file: 'personal.json', title: '個人' },
+};
+
+/** タブの初期化 */
+function setupTabs() {
+  const tabBar = document.getElementById('tabBar');
+  tabBar.addEventListener('click', (e) => {
+    const btn = e.target.closest('.tab-btn');
+    if (!btn) return;
+    const tab = btn.dataset.tab;
+    if (tab === currentTab) return;
+    currentTab = tab;
+    tabBar.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = 'all';
+    showArchive = false;
+    loadData();
+  });
+}
+
+/** データ読み込み */
+async function loadData() {
+  const config = TAB_CONFIG[currentTab];
   try {
-    const res = await fetch('dashboard.json');
+    const res = await fetch(config.file);
     if (!res.ok) {
       throw new Error(`HTTP ${res.status}: ${res.statusText}`);
     }
     const data = await res.json();
 
-    // 最終更新日時を表示
     const updatedEl = document.getElementById('lastUpdated');
     if (data.lastUpdated) {
       updatedEl.textContent = `最終更新: ${formatUpdated(data.lastUpdated)}`;
@@ -870,19 +934,22 @@ async function init() {
     projectData = data.projects || [];
     renderAll(projectData);
   } catch (err) {
-    // 【何が起きたか】データの読み込みに失敗
-    // 【なぜ】fetch失敗またはJSONパースエラー
-    // 【どう直すか】dashboard.jsonが同じディレクトリにあるか確認
     const app = document.getElementById('app');
     app.innerHTML = `
       <div class="error">
         <p>データの読み込みに失敗しました</p>
         <p style="font-size:0.85rem;color:#999;margin-top:0.5rem">
-          dashboard.json が同じディレクトリに存在するか確認してください。<br>
+          ${esc(config.file)} が同じディレクトリに存在するか確認してください。<br>
           エラー: ${esc(err.message)}
         </p>
       </div>`;
   }
+}
+
+// ===== データ読み込み =====
+async function init() {
+  setupTabs();
+  await loadData();
 }
 
 // 起動
