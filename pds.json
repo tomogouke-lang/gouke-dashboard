@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-16T00:00:00+09:00",
+  "lastUpdated": "2026-03-16T23:59:00+09:00",
   "projects": [
     {
       "id": "kinmu-system",
@@ -100,20 +100,20 @@
       "id": "n8n-obsidian-inbox",
       "name": "n8n + OpenClaw AI経営基盤",
       "priority": "高",
-      "status": "Discord連携完了",
-      "phase": { "current": 3, "total": 4, "label": "フェーズ2.7+Discord" },
+      "status": "秘書化完了（Discord+LINE+カレンダー+Limitless）",
+      "phase": { "current": 3, "total": 4, "label": "秘書機能完了" },
       "deadline": null,
       "deadlineLabel": null,
-      "bugs": ["LINE連携トークン参照切れ", "cronエラー修正"],
+      "bugs": ["Chrome MCP接続不安定"],
       "todos": [
-        "LINE連携修復",
-        "秘書機能構築（Limitless記録読み込み）",
-        "RULES.mdにDiscordルール追加",
+        "Chrome MCP動作確認",
+        "GAS 15分トリガー確認",
+        "写真OCR WF作成",
         "Haiku分離"
       ],
       "statusCategory": "進行中",
       "archivedReason": null,
-      "tags": ["n8n", "Obsidian", "API"]
+      "tags": ["n8n", "Obsidian", "API", "OpenClaw"]
     },
     {
       "id": "career-enquete",
