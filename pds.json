@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-16T23:59:00+09:00",
+  "lastUpdated": "2026-03-17T23:00:00+09:00",
   "projects": [
     {
       "id": "kinmu-system",
@@ -201,6 +201,41 @@
       "statusCategory": "完了",
       "archivedReason": null,
       "tags": ["GAS", "テスト"]
+    },
+    {
+      "id": "weekly-maintenance",
+      "name": "週次メンテナンス自動化",
+      "priority": "中",
+      "status": "初期設定完了",
+      "phase": { "current": 1, "total": 2, "label": "launchd設定済" },
+      "deadline": null,
+      "deadlineLabel": null,
+      "bugs": [],
+      "todos": [
+        "初回実行確認（次の日曜2:00）",
+        "claude -p のヘッドレス動作確認",
+        "レポート内容の品質確認"
+      ],
+      "statusCategory": "進行中",
+      "archivedReason": null,
+      "tags": ["自動化", "メンテナンス"]
+    },
+    {
+      "id": "ai-services-guide",
+      "name": "AIサービス整理・活用ガイド",
+      "priority": "中",
+      "status": "初版作成済",
+      "phase": { "current": 1, "total": 2, "label": "初版完成" },
+      "deadline": null,
+      "deadlineLabel": null,
+      "bugs": [],
+      "todos": [
+        "GOUKEさんの確認・修正",
+        "新サービス出現時に都度更新"
+      ],
+      "statusCategory": "進行中",
+      "archivedReason": null,
+      "tags": ["整理", "AI"]
     }
   ]
 }
