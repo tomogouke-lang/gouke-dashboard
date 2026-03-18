@@ -6,10 +6,16 @@
       "name": "勤務記録・運営管理システム",
       "priority": "最優先",
       "status": "テスト待ち",
-      "phase": { "current": 2, "total": 4, "label": "フェーズ2完了" },
+      "phase": {
+        "current": 2,
+        "total": 4,
+        "label": "フェーズ2完了"
+      },
       "deadline": "2026-04-01",
       "deadlineLabel": "4月実装",
-      "bugs": ["月次集計テストが未実施"],
+      "bugs": [
+        "月次集計テストが未実施"
+      ],
       "todos": [
         "月次集計を実行 → 4シート確認",
         "フェーズ3実装（日計フォーム処理）",
@@ -17,17 +23,26 @@
       ],
       "statusCategory": "テスト待ち",
       "archivedReason": null,
-      "tags": ["GAS", "最優先"]
+      "tags": [
+        "GAS",
+        "最優先"
+      ]
     },
     {
       "id": "video-training",
       "name": "動画研修管理システム",
       "priority": "高",
       "status": "稼働中（改善中）",
-      "phase": { "current": 3, "total": 4, "label": "フェーズ2.7" },
+      "phase": {
+        "current": 3,
+        "total": 4,
+        "label": "フェーズ2.7"
+      },
       "deadline": null,
       "deadlineLabel": null,
-      "bugs": ["フォーム事業所別分岐検証中"],
+      "bugs": [
+        "フォーム事業所別分岐検証中"
+      ],
       "todos": [
         "updateFormFromMaster再実行",
         "テスト回答送信",
@@ -36,14 +51,20 @@
       ],
       "statusCategory": "進行中",
       "archivedReason": null,
-      "tags": ["GAS"]
+      "tags": [
+        "GAS"
+      ]
     },
     {
       "id": "otameshi-cancel",
       "name": "お試し中止報告システム",
       "priority": "高",
       "status": "Phase2ほぼ完了",
-      "phase": { "current": 2, "total": 3, "label": "Phase2ほぼ完了" },
+      "phase": {
+        "current": 2,
+        "total": 3,
+        "label": "Phase2ほぼ完了"
+      },
       "deadline": null,
       "deadlineLabel": null,
       "bugs": [],
@@ -55,14 +76,20 @@
       ],
       "statusCategory": "テスト待ち",
       "archivedReason": null,
-      "tags": ["GAS"]
+      "tags": [
+        "GAS"
+      ]
     },
     {
       "id": "purake-hikitsugi",
       "name": "プラ家引継ぎシステム",
       "priority": "高",
       "status": "Ver2.8.1 本番運用中",
-      "phase": { "current": 3, "total": 3, "label": "Ver2.8.1本番運用中" },
+      "phase": {
+        "current": 3,
+        "total": 3,
+        "label": "Ver2.8.1本番運用中"
+      },
       "deadline": "2026-03-01",
       "deadlineLabel": "3/1本番開始済",
       "bugs": [],
@@ -73,14 +100,20 @@
       ],
       "statusCategory": "進行中",
       "archivedReason": null,
-      "tags": ["GAS"]
+      "tags": [
+        "GAS"
+      ]
     },
     {
       "id": "togo-master",
       "name": "統合マスター",
       "priority": "高",
       "status": "フェーズ2完了",
-      "phase": { "current": 2, "total": 3, "label": "フェーズ2完了" },
+      "phase": {
+        "current": 2,
+        "total": 3,
+        "label": "フェーズ2完了"
+      },
       "deadline": null,
       "deadlineLabel": null,
       "bugs": [],
@@ -91,14 +124,21 @@
       ],
       "statusCategory": "完了",
       "archivedReason": null,
-      "tags": ["GAS", "全システム基盤"]
+      "tags": [
+        "GAS",
+        "全システム基盤"
+      ]
     },
     {
       "id": "n8n-obsidian-inbox",
       "name": "n8n + OpenClaw AI経営基盤",
       "priority": "高",
       "status": "ToolTree適用完了・秘書化済み",
-      "phase": { "current": 3, "total": 4, "label": "秘書機能完了" },
+      "phase": {
+        "current": 3,
+        "total": 4,
+        "label": "秘書機能完了"
+      },
       "deadline": null,
       "deadlineLabel": null,
       "bugs": [],
@@ -109,14 +149,23 @@
       ],
       "statusCategory": "進行中",
       "archivedReason": null,
-      "tags": ["n8n", "Obsidian", "API", "OpenClaw"]
+      "tags": [
+        "n8n",
+        "Obsidian",
+        "API",
+        "OpenClaw"
+      ]
     },
     {
       "id": "career-enquete",
       "name": "キャリアアンケートシステム",
       "priority": "中",
       "status": "計画段階",
-      "phase": { "current": 1, "total": 4, "label": "シート定義済" },
+      "phase": {
+        "current": 1,
+        "total": 4,
+        "label": "シート定義済"
+      },
       "deadline": null,
       "deadlineLabel": null,
       "bugs": [],
@@ -128,14 +177,20 @@
       ],
       "statusCategory": "計画中",
       "archivedReason": null,
-      "tags": ["GAS"]
+      "tags": [
+        "GAS"
+      ]
     },
     {
       "id": "spreadsheet-exporter",
       "name": "スプレッドシート構造エクスポーター",
       "priority": "中",
       "status": "運用中",
-      "phase": { "current": 3, "total": 3, "label": "v2.2完成" },
+      "phase": {
+        "current": 3,
+        "total": 3,
+        "label": "v2.2完成"
+      },
       "deadline": null,
       "deadlineLabel": null,
       "bugs": [],
@@ -144,14 +199,20 @@
       ],
       "statusCategory": "完了",
       "archivedReason": null,
-      "tags": ["GAS"]
+      "tags": [
+        "GAS"
+      ]
     },
     {
       "id": "kunren-record",
       "name": "訓練実施記録システム",
       "priority": "未定",
       "status": "開発初期段階",
-      "phase": { "current": 1, "total": 4, "label": "開発初期段階" },
+      "phase": {
+        "current": 1,
+        "total": 4,
+        "label": "開発初期段階"
+      },
       "deadline": null,
       "deadlineLabel": null,
       "bugs": [],
@@ -160,33 +221,52 @@
       ],
       "statusCategory": "計画中",
       "archivedReason": null,
-      "tags": ["GAS"]
+      "tags": [
+        "GAS"
+      ]
     },
     {
       "id": "facility-hp",
       "name": "施設空き状況・HPシステム",
       "priority": "中",
-      "status": "HTML完成→再設計",
-      "phase": { "current": 1, "total": 4, "label": "HTML完成→再設計" },
+      "status": "介護保険掲示物作成中（千日テンプレート修正待ち）",
+      "phase": {
+        "current": 2,
+        "total": 5,
+        "label": "掲示物作成→Googleドライブ→WordPress"
+      },
       "deadline": null,
       "deadlineLabel": null,
       "bugs": [],
       "todos": [
-        "Gドライブ確認",
-        "データソース確認",
-        "方向性決定",
-        "デザイン → 実装"
+        "千日の掲示Excelを手動修正→テンプレート化",
+        "残り11事業所分を自動生成",
+        "Googleドライブにアップ→共有設定",
+        "Googleドキュメント目次作成",
+        "WordPressお知らせにリンク掲載（カスタムフィールド調査）",
+        "いざなぎ・椿のHP作成"
       ],
-      "statusCategory": "計画中",
+      "statusCategory": "進行中",
       "archivedReason": null,
-      "tags": ["HTML", "CSS", "JavaScript"]
+      "tags": [
+        "WordPress",
+        "Python",
+        "openpyxl",
+        "Dropbox",
+        "GoogleDrive"
+      ],
+      "lastUpdated": "2026-03-18T19:33:02.683698+09:00"
     },
     {
       "id": "gas-test-base",
       "name": "GASテスト基盤",
       "priority": "高",
       "status": "フェーズ3完了",
-      "phase": { "current": 3, "total": 3, "label": "フェーズ3完了" },
+      "phase": {
+        "current": 3,
+        "total": 3,
+        "label": "フェーズ3完了"
+      },
       "deadline": null,
       "deadlineLabel": null,
       "bugs": [],
@@ -196,14 +276,21 @@
       ],
       "statusCategory": "完了",
       "archivedReason": null,
-      "tags": ["GAS", "テスト"]
+      "tags": [
+        "GAS",
+        "テスト"
+      ]
     },
     {
       "id": "weekly-maintenance",
       "name": "週次メンテナンス自動化",
       "priority": "中",
       "status": "初期設定完了",
-      "phase": { "current": 1, "total": 2, "label": "launchd設定済" },
+      "phase": {
+        "current": 1,
+        "total": 2,
+        "label": "launchd設定済"
+      },
       "deadline": null,
       "deadlineLabel": null,
       "bugs": [],
@@ -214,14 +301,21 @@
       ],
       "statusCategory": "進行中",
       "archivedReason": null,
-      "tags": ["自動化", "メンテナンス"]
+      "tags": [
+        "自動化",
+        "メンテナンス"
+      ]
     },
     {
       "id": "ai-services-guide",
       "name": "AIサービス整理・活用ガイド",
       "priority": "中",
       "status": "初版作成済",
-      "phase": { "current": 1, "total": 2, "label": "初版完成" },
+      "phase": {
+        "current": 1,
+        "total": 2,
+        "label": "初版完成"
+      },
       "deadline": null,
       "deadlineLabel": null,
       "bugs": [],
@@ -231,7 +325,10 @@
       ],
       "statusCategory": "進行中",
       "archivedReason": null,
-      "tags": ["整理", "AI"]
+      "tags": [
+        "整理",
+        "AI"
+      ]
     }
   ]
 }
