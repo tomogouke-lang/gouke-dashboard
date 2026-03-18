@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-18T19:35:00+09:00",
+  "lastUpdated": "2026-03-18T20:15:00+09:00",
   "projects": [
     {
       "id": "kinmu-system",
@@ -30,27 +30,27 @@
       "id": "video-training",
       "name": "動画研修管理システム",
       "priority": "高",
-      "status": "稼働中（改善中）",
+      "status": "ナビゲーターWebApp構築中",
       "phase": {
         "current": 3,
         "total": 4,
-        "label": "フェーズ2.7"
+        "label": "ナビゲーター フェーズ1"
       },
       "deadline": null,
       "deadlineLabel": null,
-      "bugs": [
-        "フォーム事業所別分岐検証中"
-      ],
+      "bugs": [],
       "todos": [
-        "updateFormFromMaster再実行",
-        "テスト回答送信",
-        "debugFormData削除",
-        "3月配信テスト"
+        "pds-app.orgドメイン紐付け",
+        "Cloudflare Access認証設定",
+        "GAS API実装（doGet/doPost）",
+        "テキスト整形自動化（Gemini API）"
       ],
       "statusCategory": "進行中",
       "archivedReason": null,
       "tags": [
-        "GAS"
+        "GAS",
+        "SvelteKit",
+        "Cloudflare"
       ]
     },
     {
