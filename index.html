@@ -457,6 +457,31 @@ a { color: #4fc3f7; text-decoration: none; }
   display: block;
 }
 
+/* アーカイブ検索 */
+.archive-search {
+  padding: 0.5rem 1.5rem;
+}
+
+.archive-search input {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.5rem 0.75rem;
+  background: #1a1a2e;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #e0e0e0;
+  font-size: 0.85rem;
+}
+
+.archive-search input:focus {
+  outline: none;
+  border-color: #4fc3f7;
+}
+
+.archive-search input::placeholder {
+  color: #666;
+}
+
 /* カードをクリック可能にする */
 .card {
   cursor: pointer;
@@ -957,7 +982,7 @@ function renderSummary(projects) {
 /** 期日警告バナー */
 function renderDeadlineWarnings(projects) {
   const warnings = projects
-    .filter(p => p.deadline)
+    .filter(p => p.deadline && !isArchived(p))
     .map(p => ({ name: p.name, days: daysUntil(p.deadline), deadline: p.deadline, label: p.deadlineLabel }))
     .filter(w => w.days !== null && w.days <= DEADLINE_SOON_DAYS)
     .sort((a, b) => a.days - b.days);
@@ -1103,7 +1128,7 @@ function renderBugSection(projects) {
 /** タイムラインセクション */
 function renderTimeline(projects) {
   const items = projects
-    .filter(p => p.deadline)
+    .filter(p => p.deadline && !isArchived(p))
     .map(p => ({
       name: p.name,
       deadline: p.deadline,
@@ -1176,7 +1201,10 @@ function renderAll(projects) {
   const archiveHtml = sortedArchive.length > 0
     ? `<div class="archive-section ${showArchive ? 'open' : ''}" id="archiveSection">
         <div class="section-title">アーカイブ（${sortedArchive.length}件）</div>
-        <div class="cards">${sortedArchive.map(p => renderCard(p, projectData.indexOf(p))).join('')}</div>
+        <div class="archive-search">
+          <input type="text" id="archiveSearchInput" placeholder="アーカイブ内を検索..." />
+        </div>
+        <div class="cards" id="archiveCards">${sortedArchive.map(p => renderCard(p, projectData.indexOf(p))).join('')}</div>
       </div>`
     : '';
 
@@ -1218,6 +1246,19 @@ function setupEventListeners() {
     archiveBtn.addEventListener('click', () => {
       showArchive = !showArchive;
       renderAll(projectData);
+    });
+  }
+
+  // アーカイブ検索
+  const archiveSearch = document.getElementById('archiveSearchInput');
+  if (archiveSearch) {
+    archiveSearch.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      const cards = document.querySelectorAll('#archiveCards .card');
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(query) ? '' : 'none';
+      });
     });
   }
 }
