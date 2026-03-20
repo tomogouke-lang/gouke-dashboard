@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-20T10:40:00+09:00",
+  "lastUpdated": "2026-03-20T02:33:05.072Z",
   "projects": [
     {
       "id": "kinmu-system",
@@ -96,10 +96,18 @@
         "Dictionary自動学習の精度確認",
         "Cloud Speech-to-Text切替検討（精度次第）"
       ],
-      "statusCategory": "進行中",
+      "statusCategory": "完了",
       "archivedReason": null,
       "tags": [
         "GAS"
+      ],
+      "lastUpdated": "2026-03-20T02:33:04.375Z",
+      "manualChanges": [
+        {
+          "date": "2026-03-20T02:33:04.375Z",
+          "changes": "ステータスカテゴリ: 進行中 → 完了",
+          "memo": ""
+        }
       ]
     },
     {
