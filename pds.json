@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-20T02:33:28.302Z",
+  "lastUpdated": "2026-03-20T02:40:27.909Z",
   "projects": [
     {
       "id": "kinmu-system",
@@ -101,10 +101,10 @@
       "tags": [
         "GAS"
       ],
-      "lastUpdated": "2026-03-20T02:33:27.895Z",
+      "lastUpdated": "2026-03-20T02:40:27.111Z",
       "manualChanges": [
         {
-          "date": "2026-03-20T02:33:27.895Z",
+          "date": "2026-03-20T02:40:27.111Z",
           "changes": "ステータスカテゴリ: 進行中 → 完了",
           "memo": ""
         }
