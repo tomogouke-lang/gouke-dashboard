@@ -457,6 +457,243 @@ a { color: #4fc3f7; text-decoration: none; }
   display: block;
 }
 
+/* カードをクリック可能にする */
+.card {
+  cursor: pointer;
+}
+
+/* 設定ボタン */
+.settings-btn {
+  background: transparent;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #999;
+  padding: 0.35rem 0.7rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  line-height: 1;
+}
+
+.settings-btn:hover {
+  background: #0f3460;
+  color: #e0e0e0;
+}
+
+/* モーダルオーバーレイ */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+/* モーダル本体 */
+.modal {
+  background: #16213e;
+  border-radius: 12px;
+  border: 1px solid #333;
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #333;
+  position: sticky;
+  top: 0;
+  background: #16213e;
+  z-index: 1;
+}
+
+.modal-header h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  color: #999;
+  font-size: 1.4rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.2rem;
+  transition: color 0.15s;
+}
+
+.modal-close:hover { color: #fff; }
+
+.modal-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* フォームグループ */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  color: #999;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: #0f3460;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #e0e0e0;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  width: 100%;
+  transition: border-color 0.15s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #4fc3f7;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* フェーズの行 */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.75rem;
+}
+
+/* 期日行（入力＋クリアボタン） */
+.input-with-btn {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input-with-btn input {
+  flex: 1;
+}
+
+.btn-clear {
+  background: #1a1a4e;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #999;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn-clear:hover {
+  background: #0f3460;
+  color: #ef5350;
+}
+
+/* モーダルフッター */
+.modal-footer {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid #333;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.btn-cancel {
+  background: transparent;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #999;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn-cancel:hover {
+  background: #0f3460;
+  color: #e0e0e0;
+}
+
+.btn-save {
+  background: #4fc3f7;
+  border: none;
+  border-radius: 6px;
+  color: #1a1a2e;
+  padding: 0.5rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-save:hover { background: #81d4fa; }
+.btn-save:disabled {
+  background: #333;
+  color: #666;
+  cursor: not-allowed;
+}
+
+/* 保存結果メッセージ */
+.save-result {
+  font-size: 0.85rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  display: none;
+}
+
+.save-result.success {
+  background: rgba(102, 187, 106, 0.2);
+  color: #66bb6a;
+  display: block;
+}
+
+.save-result.error {
+  background: rgba(239, 83, 80, 0.2);
+  color: #ef5350;
+  display: block;
+}
+
+/* 設定モーダル専用 */
+.token-display {
+  font-size: 0.8rem;
+  color: #66bb6a;
+  padding: 0.4rem 0;
+}
+
+.token-display.none {
+  color: #ef5350;
+}
+
 /* スマホ対応 */
 @media (max-width: 768px) {
   .header { flex-direction: column; gap: 0.3rem; text-align: center; }
@@ -468,6 +705,8 @@ a { color: #4fc3f7; text-decoration: none; }
   .timeline-item { gap: 0.5rem; }
   .tab-bar { padding: 0 1rem; }
   .tab-btn { padding: 0.5rem 1rem; font-size: 0.8rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .modal { max-height: 95vh; }
 }
 </style>
 </head>
@@ -475,8 +714,98 @@ a { color: #4fc3f7; text-decoration: none; }
 
 <header class="header">
   <h1>GOUKE Dashboard</h1>
-  <span class="updated" id="lastUpdated"></span>
+  <div style="display:flex;align-items:center;gap:0.75rem;">
+    <span class="updated" id="lastUpdated"></span>
+    <button class="settings-btn" id="settingsBtn" title="GitHub設定">&#9881;</button>
+  </div>
 </header>
+
+<!-- 編集モーダル -->
+<div class="modal-overlay" id="editModalOverlay">
+  <div class="modal" id="editModal">
+    <div class="modal-header">
+      <h2 id="editModalTitle">プロジェクト編集</h2>
+      <button class="modal-close" id="editModalClose">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>ステータスカテゴリ</label>
+        <select id="editStatusCategory">
+          <option value="計画中">計画中</option>
+          <option value="進行中">進行中</option>
+          <option value="テスト待ち">テスト待ち</option>
+          <option value="完了">完了</option>
+          <option value="保留">保留</option>
+          <option value="中止">中止</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>ステータス（テキスト）</label>
+        <input type="text" id="editStatus" placeholder="例: 開発中フェーズ2">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>フェーズ（現在）</label>
+          <input type="number" id="editPhaseCurrent" min="0" placeholder="0">
+        </div>
+        <div class="form-group">
+          <label>フェーズ（合計）</label>
+          <input type="number" id="editPhaseTotal" min="0" placeholder="0">
+        </div>
+        <div class="form-group">
+          <label>フェーズラベル</label>
+          <input type="text" id="editPhaseLabel" placeholder="例: 機能">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>期日</label>
+        <div class="input-with-btn">
+          <input type="date" id="editDeadline">
+          <button class="btn-clear" id="editDeadlineClear">クリア</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>期日ラベル</label>
+        <input type="text" id="editDeadlineLabel" placeholder="例: 本番リリース">
+      </div>
+      <div class="form-group">
+        <label>変更メモ（なぜ変更したか）</label>
+        <textarea id="editMemo" placeholder="例: 要件追加によりフェーズを延長"></textarea>
+      </div>
+      <div class="save-result" id="editSaveResult"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" id="editModalCancel">キャンセル</button>
+      <button class="btn-save" id="editModalSave">GitHubに保存</button>
+    </div>
+  </div>
+</div>
+
+<!-- GitHub設定モーダル -->
+<div class="modal-overlay" id="settingsModalOverlay">
+  <div class="modal" id="settingsModal">
+    <div class="modal-header">
+      <h2>GitHub設定</h2>
+      <button class="modal-close" id="settingsModalClose">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div id="tokenStatus" class="token-display none">トークン未設定</div>
+      <div class="form-group">
+        <label>GitHubトークン（Personal Access Token）</label>
+        <input type="password" id="settingsToken" placeholder="ghp_xxxxxxxxxx">
+      </div>
+      <div style="font-size:0.8rem;color:#666;">
+        repo スコープの権限が必要です。保存するとlocalStorageに記録されます。
+      </div>
+      <div class="save-result" id="settingsSaveResult"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" id="settingsDeleteToken" style="color:#ef5350;border-color:#ef5350;">トークン削除</button>
+      <button class="btn-cancel" id="settingsModalCancel">キャンセル</button>
+      <button class="btn-save" id="settingsModalSave">保存</button>
+    </div>
+  </div>
+</div>
 
 <!-- タブ -->
 <div class="tab-bar" id="tabBar">
@@ -660,7 +989,7 @@ function priorityBadge(priority) {
 }
 
 /** カード1枚を生成 */
-function renderCard(project) {
+function renderCard(project, globalIndex) {
   const p = project;
   const ph = p.phase || {};
   const pct = ph.total > 0 ? Math.round((ph.current / ph.total) * 100) : 0;
@@ -670,6 +999,8 @@ function renderCard(project) {
   const cat = getCategory(p);
   const archived = isArchived(p);
   const isCancelled = cat === '中止';
+  // globalIndexはprojectData配列上のインデックス（クリック時に使う）
+  const dataIdx = globalIndex !== undefined ? globalIndex : projectData.indexOf(p);
 
   // 期日表示
   let deadlineHtml = '';
@@ -715,7 +1046,7 @@ function renderCard(project) {
     : '';
 
   return `
-    <div class="card ${archived ? 'archived' : ''}" data-category="${esc(cat)}">
+    <div class="card ${archived ? 'archived' : ''}" data-category="${esc(cat)}" data-index="${dataIdx}" role="button" tabindex="0">
       <div class="card-header">
         <span class="card-name ${isCancelled ? 'cancelled' : ''}">${esc(p.name)}</span>
         <span class="card-badges">
@@ -845,7 +1176,7 @@ function renderAll(projects) {
   const archiveHtml = sortedArchive.length > 0
     ? `<div class="archive-section ${showArchive ? 'open' : ''}" id="archiveSection">
         <div class="section-title">アーカイブ（${sortedArchive.length}件）</div>
-        <div class="cards">${sortedArchive.map(renderCard).join('')}</div>
+        <div class="cards">${sortedArchive.map(p => renderCard(p, projectData.indexOf(p))).join('')}</div>
       </div>`
     : '';
 
@@ -854,7 +1185,7 @@ function renderAll(projects) {
     ${renderSummary(projects)}
     ${renderDeadlineWarnings(projects)}
     <div class="section-title">プロジェクト一覧（${sorted.length}件）</div>
-    <div class="cards">${sorted.map(renderCard).join('')}</div>
+    <div class="cards">${sorted.map(p => renderCard(p, projectData.indexOf(p))).join('')}</div>
     ${archiveHtml}
     <div class="section-title">不具合一覧</div>
     ${renderBugSection(filtered)}
@@ -946,9 +1277,362 @@ async function loadData() {
   }
 }
 
+// ===== GitHub API =====
+
+/** localStorage から GitHub トークンを取得 */
+function getToken() {
+  return localStorage.getItem('github_token') || '';
+}
+
+/** トークンを localStorage に保存 */
+function saveToken(token) {
+  localStorage.setItem('github_token', token);
+}
+
+/** トークンを削除 */
+function deleteToken() {
+  localStorage.removeItem('github_token');
+}
+
+/**
+ * GitHub Contents APIでファイルの sha と content（デコード済み）を取得
+ * @param {string} filePath - リポジトリ内のパス（例: pds.json）
+ * @param {string} token
+ * @returns {Promise<{sha: string, data: object}>}
+ */
+async function githubGet(filePath, token) {
+  const url = `https://api.github.com/repos/tomogouke-lang/gouke-dashboard/contents/${filePath}`;
+  const res = await fetch(url, {
+    headers: {
+      Authorization: `token ${token}`,
+      Accept: 'application/vnd.github.v3+json',
+    },
+  });
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}));
+    throw new Error(`GitHub GET失敗: ${res.status} ${body.message || res.statusText}`);
+  }
+  const json = await res.json();
+  // Base64デコード（UTF-8対応）
+  const decoded = decodeURIComponent(escape(atob(json.content.replace(/\n/g, ''))));
+  return { sha: json.sha, data: JSON.parse(decoded) };
+}
+
+/**
+ * GitHub Contents API でファイルを更新（PUT）
+ * @param {string} filePath
+ * @param {string} sha
+ * @param {object} updatedData - 更新後のオブジェクト
+ * @param {string} commitMessage
+ * @param {string} token
+ */
+async function githubPut(filePath, sha, updatedData, commitMessage, token) {
+  const url = `https://api.github.com/repos/tomogouke-lang/gouke-dashboard/contents/${filePath}`;
+  // UTF-8対応のBase64エンコード
+  const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(updatedData, null, 2))));
+  const res = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      Authorization: `token ${token}`,
+      'Content-Type': 'application/json',
+      Accept: 'application/vnd.github.v3+json',
+    },
+    body: JSON.stringify({ message: commitMessage, content: encoded, sha }),
+  });
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}));
+    throw new Error(`GitHub PUT失敗: ${res.status} ${body.message || res.statusText}`);
+  }
+}
+
+// ===== 編集モーダル =====
+
+/** 現在編集中のプロジェクトインデックス */
+let editingIndex = -1;
+
+/**
+ * 編集モーダルを開く
+ * @param {number} index - projectData 配列上のインデックス
+ */
+function openEditModal(index) {
+  const p = projectData[index];
+  if (!p) return;
+  editingIndex = index;
+
+  // フォームに現在値をセット
+  document.getElementById('editModalTitle').textContent = `編集: ${p.name}`;
+  document.getElementById('editStatusCategory').value = getCategory(p);
+  document.getElementById('editStatus').value = p.status || '';
+  document.getElementById('editPhaseCurrent').value = (p.phase && p.phase.current != null) ? p.phase.current : '';
+  document.getElementById('editPhaseTotal').value = (p.phase && p.phase.total != null) ? p.phase.total : '';
+  document.getElementById('editPhaseLabel').value = (p.phase && p.phase.label) ? p.phase.label : '';
+  document.getElementById('editDeadline').value = p.deadline || '';
+  document.getElementById('editDeadlineLabel').value = p.deadlineLabel || '';
+  document.getElementById('editMemo').value = '';
+
+  // 結果メッセージをリセット
+  const result = document.getElementById('editSaveResult');
+  result.className = 'save-result';
+  result.textContent = '';
+
+  // ボタンをリセット
+  const saveBtn = document.getElementById('editModalSave');
+  saveBtn.disabled = false;
+  saveBtn.textContent = 'GitHubに保存';
+
+  document.getElementById('editModalOverlay').classList.add('open');
+}
+
+/** 編集モーダルを閉じる */
+function closeEditModal() {
+  document.getElementById('editModalOverlay').classList.remove('open');
+  editingIndex = -1;
+}
+
+/**
+ * 変更内容のサマリーテキストを生成（ログ用）
+ * @param {object} original - 変更前のプロジェクト
+ * @param {object} updated - 変更後のプロジェクト
+ * @returns {string}
+ */
+function buildChangeSummary(original, updated) {
+  const parts = [];
+  if (original.statusCategory !== updated.statusCategory) {
+    parts.push(`ステータスカテゴリ: ${original.statusCategory || '未設定'} → ${updated.statusCategory}`);
+  }
+  if (original.status !== updated.status) {
+    parts.push(`ステータス: ${original.status || ''} → ${updated.status}`);
+  }
+  const op = original.phase || {};
+  const np = updated.phase || {};
+  if (op.current !== np.current || op.total !== np.total) {
+    parts.push(`フェーズ: ${op.current}/${op.total} → ${np.current}/${np.total}`);
+  }
+  if (original.deadline !== updated.deadline) {
+    parts.push(`期日: ${original.deadline || 'なし'} → ${updated.deadline || 'なし'}`);
+  }
+  return parts.length > 0 ? parts.join(' / ') : '変更あり';
+}
+
+/** 保存ボタンの処理 */
+async function handleEditSave() {
+  const token = getToken();
+  if (!token) {
+    // トークンがない場合は設定モーダルを案内
+    showEditResult('error', 'GitHubトークンが未設定です。右上の⚙から設定してください。');
+    return;
+  }
+
+  if (editingIndex < 0) return;
+
+  const original = projectData[editingIndex];
+  const saveBtn = document.getElementById('editModalSave');
+  saveBtn.disabled = true;
+  saveBtn.textContent = '保存中...';
+
+  try {
+    // フォームから値を取得
+    const newStatusCategory = document.getElementById('editStatusCategory').value;
+    const newStatus = document.getElementById('editStatus').value.trim();
+    const newPhaseCurrent = parseInt(document.getElementById('editPhaseCurrent').value, 10);
+    const newPhaseTotal = parseInt(document.getElementById('editPhaseTotal').value, 10);
+    const newPhaseLabel = document.getElementById('editPhaseLabel').value.trim();
+    const newDeadline = document.getElementById('editDeadline').value || null;
+    const newDeadlineLabel = document.getElementById('editDeadlineLabel').value.trim();
+    const memo = document.getElementById('editMemo').value.trim();
+
+    // 更新後のプロジェクトオブジェクト（不変性を維持して新規作成）
+    const updatedProject = {
+      ...original,
+      statusCategory: newStatusCategory,
+      status: newStatus,
+      phase: {
+        ...(original.phase || {}),
+        current: isNaN(newPhaseCurrent) ? (original.phase && original.phase.current) || 0 : newPhaseCurrent,
+        total: isNaN(newPhaseTotal) ? (original.phase && original.phase.total) || 0 : newPhaseTotal,
+        label: newPhaseLabel || (original.phase && original.phase.label) || '',
+      },
+      deadline: newDeadline || undefined,
+      deadlineLabel: newDeadlineLabel || undefined,
+      lastUpdated: new Date().toISOString(),
+    };
+
+    // deadlineが空の場合はキーを削除
+    if (!updatedProject.deadline) delete updatedProject.deadline;
+    if (!updatedProject.deadlineLabel) delete updatedProject.deadlineLabel;
+
+    // 変更ログを追記
+    const changeEntry = {
+      date: new Date().toISOString(),
+      changes: buildChangeSummary(original, updatedProject),
+      memo: memo || '',
+    };
+    updatedProject.manualChanges = [
+      ...(original.manualChanges || []),
+      changeEntry,
+    ];
+
+    // GitHub APIでファイル全体を取得・更新
+    const filePath = TAB_CONFIG[currentTab].file;
+    const { sha, data: fileData } = await githubGet(filePath, token);
+
+    // プロジェクト配列を差し替え
+    const updatedProjects = fileData.projects.map((p, i) => {
+      // 名前でマッチング（同名プロジェクトに対応）
+      if (p.name === original.name) return updatedProject;
+      return p;
+    });
+
+    const updatedFileData = {
+      ...fileData,
+      lastUpdated: new Date().toISOString(),
+      projects: updatedProjects,
+    };
+
+    const commitMsg = `手動更新: ${original.name} のステータスを変更`;
+    await githubPut(filePath, sha, updatedFileData, commitMsg, token);
+
+    showEditResult('success', '保存しました。データを再読み込みします...');
+
+    // 1秒後に再読み込み
+    setTimeout(async () => {
+      closeEditModal();
+      currentFilter = 'all';
+      await loadData();
+    }, 1200);
+
+  } catch (err) {
+    showEditResult('error', `保存失敗: ${err.message}`);
+    saveBtn.disabled = false;
+    saveBtn.textContent = 'GitHubに保存';
+  }
+}
+
+/** 編集モーダルの結果メッセージを表示 */
+function showEditResult(type, message) {
+  const el = document.getElementById('editSaveResult');
+  el.className = `save-result ${type}`;
+  el.textContent = message;
+}
+
+// ===== 設定モーダル =====
+
+/** 設定モーダルを開く */
+function openSettingsModal() {
+  const token = getToken();
+  const statusEl = document.getElementById('tokenStatus');
+  if (token) {
+    statusEl.className = 'token-display';
+    statusEl.textContent = `トークン設定済み: ${token.substring(0, 4)}${'*'.repeat(token.length - 4)}`;
+  } else {
+    statusEl.className = 'token-display none';
+    statusEl.textContent = 'トークン未設定';
+  }
+  document.getElementById('settingsToken').value = '';
+  const result = document.getElementById('settingsSaveResult');
+  result.className = 'save-result';
+  result.textContent = '';
+  document.getElementById('settingsModalOverlay').classList.add('open');
+}
+
+/** 設定モーダルを閉じる */
+function closeSettingsModal() {
+  document.getElementById('settingsModalOverlay').classList.remove('open');
+}
+
+/** 設定を保存 */
+function handleSettingsSave() {
+  const token = document.getElementById('settingsToken').value.trim();
+  if (!token) {
+    const result = document.getElementById('settingsSaveResult');
+    result.className = 'save-result error';
+    result.textContent = 'トークンを入力してください';
+    return;
+  }
+  saveToken(token);
+  closeSettingsModal();
+}
+
+/** トークン削除 */
+function handleSettingsDelete() {
+  if (!confirm('GitHubトークンを削除しますか？')) return;
+  deleteToken();
+  closeSettingsModal();
+}
+
+// ===== モーダルのイベントリスナー登録 =====
+function setupModalListeners() {
+  // 設定ボタン
+  document.getElementById('settingsBtn').addEventListener('click', openSettingsModal);
+
+  // 設定モーダル
+  document.getElementById('settingsModalClose').addEventListener('click', closeSettingsModal);
+  document.getElementById('settingsModalCancel').addEventListener('click', closeSettingsModal);
+  document.getElementById('settingsModalSave').addEventListener('click', handleSettingsSave);
+  document.getElementById('settingsDeleteToken').addEventListener('click', handleSettingsDelete);
+  document.getElementById('settingsModalOverlay').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('settingsModalOverlay')) closeSettingsModal();
+  });
+
+  // 編集モーダル
+  document.getElementById('editModalClose').addEventListener('click', closeEditModal);
+  document.getElementById('editModalCancel').addEventListener('click', closeEditModal);
+  document.getElementById('editModalSave').addEventListener('click', handleEditSave);
+  document.getElementById('editDeadlineClear').addEventListener('click', () => {
+    document.getElementById('editDeadline').value = '';
+  });
+  document.getElementById('editModalOverlay').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('editModalOverlay')) closeEditModal();
+  });
+
+  // Escキーでモーダルを閉じる
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeEditModal();
+      closeSettingsModal();
+    }
+  });
+}
+
+// ===== カードクリックのイベントリスナー（動的に設定） =====
+
+/**
+ * カード一覧のクリックイベントをdelegationで処理
+ * renderAllを呼ぶたびに再設定するため、appにだけ登録
+ */
+function setupCardClickListener() {
+  const app = document.getElementById('app');
+  // 既存リスナーの重複を避けるためonce属性でなくフラグ管理
+  if (app._cardClickAttached) return;
+  app._cardClickAttached = true;
+
+  app.addEventListener('click', (e) => {
+    const card = e.target.closest('.card');
+    if (!card) return;
+    // details/summary内のクリックはモーダルを開かない
+    if (e.target.closest('details') || e.target.closest('summary')) return;
+    const index = parseInt(card.dataset.index, 10);
+    if (isNaN(index) || index < 0) return;
+    openEditModal(index);
+  });
+
+  // キーボードアクセシビリティ（Enter/Spaceでモーダルを開く）
+  app.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const card = e.target.closest('.card');
+    if (!card) return;
+    e.preventDefault();
+    const index = parseInt(card.dataset.index, 10);
+    if (isNaN(index)) return;
+    openEditModal(index);
+  });
+}
+
 // ===== データ読み込み =====
 async function init() {
   setupTabs();
+  setupModalListeners();
+  setupCardClickListener();
   await loadData();
 }
 
