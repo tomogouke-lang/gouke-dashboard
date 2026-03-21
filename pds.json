@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-20T02:40:27.909Z",
+  "lastUpdated": "2026-03-21T07:24:24.699Z",
   "projects": [
     {
       "id": "kinmu-system",
@@ -141,25 +141,31 @@
       "priority": "高",
       "status": "GLM-5-Turbo全面切替完了・秘書化済み",
       "phase": {
-        "current": 3,
+        "current": 4,
         "total": 4,
         "label": "秘書機能完了"
       },
-      "deadline": null,
-      "deadlineLabel": null,
       "bugs": [],
       "todos": [
         "OpenClaw LINE応答速度の改善確認",
         "写真OCR WF作成",
         "Haiku分離（個人情報データ用）"
       ],
-      "statusCategory": "進行中",
+      "statusCategory": "完了",
       "archivedReason": null,
       "tags": [
         "n8n",
         "Obsidian",
         "API",
         "OpenClaw"
+      ],
+      "lastUpdated": "2026-03-21T07:24:24.001Z",
+      "manualChanges": [
+        {
+          "date": "2026-03-21T07:24:24.001Z",
+          "changes": "ステータスカテゴリ: 進行中 → 完了 / フェーズ: 3/4 → 4/4 / 期日: なし → なし",
+          "memo": ""
+        }
       ]
     },
     {
