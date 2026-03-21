@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-21T07:24:24.699Z",
+  "lastUpdated": "2026-03-21T07:25:02.919Z",
   "projects": [
     {
       "id": "kinmu-system",
@@ -324,12 +324,10 @@
       "priority": "中",
       "status": "初版作成済",
       "phase": {
-        "current": 1,
+        "current": 2,
         "total": 2,
         "label": "初版完成"
       },
-      "deadline": null,
-      "deadlineLabel": null,
       "bugs": [],
       "todos": [
         "GOUKEさんの確認・修正",
@@ -340,6 +338,14 @@
       "tags": [
         "整理",
         "AI"
+      ],
+      "lastUpdated": "2026-03-21T07:25:02.565Z",
+      "manualChanges": [
+        {
+          "date": "2026-03-21T07:25:02.565Z",
+          "changes": "フェーズ: 1/2 → 2/2 / 期日: なし → なし",
+          "memo": ""
+        }
       ]
     }
   ]
