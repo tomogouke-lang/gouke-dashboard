@@ -347,6 +347,25 @@
           "memo": ""
         }
       ]
+    },
+    {
+      "name": "介護保険関係資料（事業所掲示）",
+      "statusCategory": "active",
+      "status": "進行中",
+      "phase": "千日完成、残り10事業所",
+      "bugs": [],
+      "todos": [
+        "残り10事業所のExcel作成→PDF確認",
+        "excel-to-pdf.shスクリプト修正",
+        "Googleドライブアップロード→HP掲載"
+      ],
+      "deadline": "",
+      "tags": [
+        "介護",
+        "事務",
+        "HP"
+      ],
+      "lastUpdated": "2026-03-22T17:30:47.355864+09:00"
     }
   ]
 }
