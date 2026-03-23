@@ -241,7 +241,7 @@
       "id": "facility-hp",
       "name": "施設空き状況・HPシステム",
       "priority": "中",
-      "status": "介護保険掲示物作成中（千日テンプレート修正待ち）",
+      "status": "事業所掲示完了・HP掲載待ち",
       "phase": {
         "current": 2,
         "total": 5,
@@ -267,7 +267,7 @@
         "Dropbox",
         "GoogleDrive"
       ],
-      "lastUpdated": "2026-03-18T19:33:02.683698+09:00"
+      "lastUpdated": "2026-03-23T23:00:00+09:00"
     },
     {
       "id": "gas-test-base",
@@ -350,13 +350,11 @@
     },
     {
       "name": "介護保険関係資料（事業所掲示）",
-      "statusCategory": "active",
-      "status": "進行中",
-      "phase": "千日完成、残り10事業所",
+      "statusCategory": "completed",
+      "status": "全12事業所完了",
+      "phase": "完了",
       "bugs": [],
       "todos": [
-        "残り10事業所のExcel作成→PDF確認",
-        "excel-to-pdf.shスクリプト修正",
         "Googleドライブアップロード→HP掲載"
       ],
       "deadline": "",
@@ -365,7 +363,7 @@
         "事務",
         "HP"
       ],
-      "lastUpdated": "2026-03-22T17:30:47.355864+09:00"
+      "lastUpdated": "2026-03-23T23:00:00+09:00"
     }
   ]
 }
