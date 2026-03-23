@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-23T11:10:00+09:00",
+  "lastUpdated": "2026-03-23T21:30:00+09:00",
   "projects": [
     {
       "id": "kinmu-system",
@@ -147,10 +147,10 @@
       },
       "bugs": [],
       "todos": [
-        "明朝7時の介護ニュース初回配信を確認",
         "重要メール→LINE通知（3-1）",
         "競合求人の自動監視（3-4）",
-        "Haiku分離（個人情報データ用）"
+        "Haiku分離（個人情報データ用）",
+        "Brave API Key を1Passwordに登録"
       ],
       "statusCategory": "進行中",
       "archivedReason": null,
