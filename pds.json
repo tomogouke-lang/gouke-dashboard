@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-21T07:25:02.919Z",
+  "lastUpdated": "2026-03-23T11:10:00+09:00",
   "projects": [
     {
       "id": "kinmu-system",
@@ -139,19 +139,20 @@
       "id": "n8n-obsidian-inbox",
       "name": "n8n + OpenClaw AI経営基盤",
       "priority": "高",
-      "status": "GLM-5-Turbo全面切替完了・秘書化済み",
+      "status": "介護経営ニュース毎朝配信WF追加（フェーズ3進行中）",
       "phase": {
         "current": 4,
         "total": 4,
-        "label": "秘書機能完了"
+        "label": "フェーズ3ワークフロー構築中"
       },
       "bugs": [],
       "todos": [
-        "OpenClaw LINE応答速度の改善確認",
-        "写真OCR WF作成",
+        "明朝7時の介護ニュース初回配信を確認",
+        "重要メール→LINE通知（3-1）",
+        "競合求人の自動監視（3-4）",
         "Haiku分離（個人情報データ用）"
       ],
-      "statusCategory": "完了",
+      "statusCategory": "進行中",
       "archivedReason": null,
       "tags": [
         "n8n",
