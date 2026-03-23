@@ -1292,7 +1292,7 @@ function setupTabs() {
 async function loadData() {
   const config = TAB_CONFIG[currentTab];
   try {
-    const res = await fetch(config.file);
+    const res = await fetch(config.file + '?t=' + Date.now());
     if (!res.ok) {
       throw new Error(`HTTP ${res.status}: ${res.statusText}`);
     }
