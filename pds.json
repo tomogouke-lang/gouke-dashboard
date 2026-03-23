@@ -88,8 +88,8 @@
         "total": 3,
         "label": "Ver2.8.1本番運用中"
       },
-      "deadline": "2026-03-01",
-      "deadlineLabel": "3/1本番開始済",
+      "deadline": null,
+      "deadlineLabel": null,
       "bugs": [],
       "todos": [
         "index.html微調整（ボタン文字1行化）",
