@@ -1,25 +1,25 @@
 {
-  "lastUpdated": "2026-03-23T21:30:00+09:00",
+  "lastUpdated": "2026-03-25T11:50:00+09:00",
   "projects": [
     {
       "id": "kinmu-system",
       "name": "勤務記録・運営管理システム",
       "priority": "最優先",
-      "status": "テスト待ち",
+      "status": "フェーズ1実装中（フォーム修正）",
       "phase": {
-        "current": 2,
+        "current": 1,
         "total": 4,
-        "label": "フェーズ2完了"
+        "label": "フェーズ1-1完了"
       },
       "deadline": "2026-04-01",
       "deadlineLabel": "4月実装",
       "bugs": [],
       "todos": [
-        "月次集計を実行（2026年3月）→ 4シート確認",
-        "フェーズ3実装（日計フォーム処理）",
-        "涌波店で1ヶ月分テスト"
+        "フェーズ1-2: onFormSubmit修正（2勤務目データ保存）",
+        "フェーズ1-3: 再送信→上書き+修正マーク対応",
+        "フォーム選択肢の自動同期（退職スタッフ反映）"
       ],
-      "statusCategory": "テスト待ち",
+      "statusCategory": "進行中",
       "archivedReason": null,
       "tags": [
         "GAS",
