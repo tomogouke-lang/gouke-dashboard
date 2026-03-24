@@ -139,7 +139,7 @@
       "id": "n8n-obsidian-inbox",
       "name": "n8n + OpenClaw AI経営基盤",
       "priority": "高",
-      "status": "介護経営ニュース毎朝配信WF追加（フェーズ3進行中）",
+      "status": "介護経営ニュース毎朝配信WF修正完了・稼働中（フェーズ3進行中）",
       "phase": {
         "current": 4,
         "total": 4,
@@ -160,7 +160,7 @@
         "API",
         "OpenClaw"
       ],
-      "lastUpdated": "2026-03-21T07:24:24.001Z",
+      "lastUpdated": "2026-03-24T10:45:00+09:00",
       "manualChanges": [
         {
           "date": "2026-03-21T07:24:24.001Z",
