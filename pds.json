@@ -139,7 +139,7 @@
       "id": "n8n-obsidian-inbox",
       "name": "n8n + OpenClaw AI経営基盤",
       "priority": "高",
-      "status": "介護経営ニュース毎朝配信WF修正完了・稼働中（フェーズ3進行中）",
+      "status": "Z.AI規約対応完了。ニュース→OpenClaw cron、n8n要約→GPT-5.4 Nano（フェーズ3進行中）",
       "phase": {
         "current": 4,
         "total": 4,
@@ -149,8 +149,7 @@
       "todos": [
         "重要メール→LINE通知（3-1）",
         "競合求人の自動監視（3-4）",
-        "Haiku分離（個人情報データ用）",
-        "Brave API Key を1Passwordに登録"
+        "GPT-5.4 Nano要約の品質確認（3WF次回実行結果）"
       ],
       "statusCategory": "進行中",
       "archivedReason": null,
@@ -160,7 +159,7 @@
         "API",
         "OpenClaw"
       ],
-      "lastUpdated": "2026-03-24T10:45:00+09:00",
+      "lastUpdated": "2026-03-25T11:30:00+09:00",
       "manualChanges": [
         {
           "date": "2026-03-21T07:24:24.001Z",
