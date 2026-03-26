@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-25T20:40:00+09:00",
+  "lastUpdated": "2026-03-26T15:10:00+09:00",
   "projects": [
     {
       "id": "kinmu-system",
@@ -139,7 +139,7 @@
       "id": "n8n-obsidian-inbox",
       "name": "n8n + OpenClaw AI経営基盤",
       "priority": "高",
-      "status": "Z.AI規約対応完了。ニュース→OpenClaw cron、n8n要約→GPT-5.4 Nano（フェーズ3進行中）",
+      "status": "WF修正・cron修正・Discord配信統一完了。GPT-5.4 Nanoテスト成功（フェーズ3進行中）",
       "phase": {
         "current": 4,
         "total": 4,
@@ -149,7 +149,8 @@
       "todos": [
         "重要メール→LINE通知（3-1）",
         "競合求人の自動監視（3-4）",
-        "GPT-5.4 Nano要約の品質確認（3WF次回実行結果）"
+        "Gmail→Obsidian WFのGPT-5.4 Nano実行確認（次回メール受信時）",
+        "明朝の自動配信確認（ニュース7:00 + ブリーフィング8:00）"
       ],
       "statusCategory": "進行中",
       "archivedReason": null,
@@ -159,7 +160,7 @@
         "API",
         "OpenClaw"
       ],
-      "lastUpdated": "2026-03-25T11:30:00+09:00",
+      "lastUpdated": "2026-03-26T15:10:00+09:00",
       "manualChanges": [
         {
           "date": "2026-03-21T07:24:24.001Z",
