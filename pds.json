@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-26T21:30:00+09:00",
+  "lastUpdated": "2026-03-26T23:30:00+09:00",
   "projects": [
     {
       "id": "kinmu-system",
@@ -30,18 +30,18 @@
       "id": "video-training",
       "name": "動画研修管理システム",
       "priority": "高",
-      "status": "ナビゲーターGAS API連携完了・台本自動生成が次",
+      "status": "ナビゲーター完了・個人研修記録対応が次",
       "phase": {
         "current": 3,
         "total": 4,
-        "label": "ナビゲーター フェーズ2開始"
+        "label": "個人研修記録対応"
       },
       "deadline": null,
       "deadlineLabel": null,
       "bugs": [],
       "todos": [
-        "台本自動生成（Gemini 2.0 Flash API）",
-        "Cloudflareにデプロイ",
+        "個人研修・新人研修の受講記録対応（方針A: 既存拡張）",
+        "配信予約に種類列追加・進捗管理フィルタ",
         "配信準備一括自動化"
       ],
       "statusCategory": "進行中",
