@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-26T15:10:00+09:00",
+  "lastUpdated": "2026-03-26T17:00:00+09:00",
   "projects": [
     {
       "id": "kinmu-system",
@@ -30,17 +30,17 @@
       "id": "video-training",
       "name": "動画研修管理システム",
       "priority": "高",
-      "status": "進捗管理修正完了・ナビゲーター構築中",
+      "status": "4月配信準備完了・ナビゲーター拡張中",
       "phase": {
         "current": 3,
         "total": 4,
         "label": "ナビゲーター フェーズ1"
       },
-      "deadline": null,
-      "deadlineLabel": null,
+      "deadline": "2026-04-01",
+      "deadlineLabel": "4月配信",
       "bugs": [],
       "todos": [
-        "clasp認証再設定",
+        "ナビゲーター完成（今回のフロー組み込み）",
         "pds-app.orgドメイン紐付け",
         "Cloudflare Access認証設定",
         "GAS API実装（doGet/doPost）"
