@@ -139,7 +139,7 @@
       "id": "n8n-obsidian-inbox",
       "name": "n8n + OpenClaw AI経営基盤",
       "priority": "高",
-      "status": "WF修正・cron修正・Discord配信統一完了。GPT-5.4 Nanoテスト成功（フェーズ3進行中）",
+      "status": "cron TZ最終修正完了（ソースコードレベル検証済み）。OpenClawプロジェクト分離。明朝7:00/8:00配信確認待ち",
       "phase": {
         "current": 4,
         "total": 4,
@@ -160,7 +160,7 @@
         "API",
         "OpenClaw"
       ],
-      "lastUpdated": "2026-03-26T15:10:00+09:00",
+      "lastUpdated": "2026-03-26T16:40:00+09:00",
       "manualChanges": [
         {
           "date": "2026-03-21T07:24:24.001Z",
