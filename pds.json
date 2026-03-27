@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-26T23:30:00+09:00",
+  "lastUpdated": "2026-03-27T19:45:00+09:00",
   "projects": [
     {
       "id": "kinmu-system",
@@ -56,22 +56,22 @@
       "id": "otameshi-cancel",
       "name": "お試し中止報告システム",
       "priority": "高",
-      "status": "Phase2ほぼ完了",
+      "status": "稼働中（LINE通知追加済み）",
       "phase": {
         "current": 2,
         "total": 3,
-        "label": "Phase2ほぼ完了"
+        "label": "Phase2完了・運用中"
       },
       "deadline": null,
       "deadlineLabel": null,
       "bugs": [],
       "todos": [
+        "不要トリガー削除（checkUnreported, autoCloseUndecided）",
         "テストデータ削除",
         "本番テスト送信",
-        "施設責任者にURL通知",
-        "setup_facility_checkbox.gs削除"
+        "施設責任者にURL通知"
       ],
-      "statusCategory": "テスト待ち",
+      "statusCategory": "進行中",
       "archivedReason": null,
       "tags": [
         "GAS"
