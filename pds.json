@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-27T19:45:00+09:00",
+  "lastUpdated": "2026-03-27T23:40:00+09:00",
   "projects": [
     {
       "id": "kinmu-system",
@@ -113,25 +113,29 @@
       "id": "togo-master",
       "name": "統合マスター",
       "priority": "高",
-      "status": "フェーズ2完了",
+      "status": "送迎車管理システム追加完了・フォーム回答待ち",
       "phase": {
-        "current": 2,
+        "current": 3,
         "total": 3,
-        "label": "フェーズ2完了"
+        "label": "送迎車管理追加完了"
       },
-      "deadline": null,
-      "deadlineLabel": null,
+      "deadline": "2026-03-31",
+      "deadlineLabel": "フォーム回答期限",
       "bugs": [],
       "todos": [
+        "フォーム回答待ち（期限3/31）→全事業所完了後に反映実行",
+        "setupVehicleNotificationTrigger再実行（25日トリガー）",
+        "古いフォーム・回答シート削除",
         "vehicle_migration.gs削除",
         "従業員資格データ入力",
         "事業所データ入力"
       ],
-      "statusCategory": "完了",
+      "statusCategory": "進行中",
       "archivedReason": null,
       "tags": [
         "GAS",
-        "全システム基盤"
+        "全システム基盤",
+        "送迎車管理"
       ]
     },
     {
